@@ -27,7 +27,7 @@ jobs:
       - name: Reconstruct verified portrait
         shell: bash
         run: |
-          cat portrait.part1 portrait.part2 portrait.part3 portrait.part4 | base64 --decode > william-gehrkens.jpg
+          cat portrait.chunk1a portrait.chunk1b portrait.chunk2 portrait.chunk3 portrait.chunk4 portrait.chunk5 portrait.chunk6 portrait.chunk7 portrait.chunk8 | base64 --decode > william-gehrkens.jpg
           test "$(wc -c < william-gehrkens.jpg)" -eq 23388
           echo "85c0dc3f9df401ed76713fd7e346d4f2186bbbeb65719f1c1a599a6d372719b8  william-gehrkens.jpg" | sha256sum --check --strict
 
