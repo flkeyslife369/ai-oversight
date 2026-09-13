@@ -23,14 +23,24 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Reconstruct verified portrait
+        shell: bash
+        run: |
+          cat portrait.part1 portrait.part2 portrait.part3 portrait.part4 | base64 --decode > william-gehrkens.jpg
+          test "$(wc -c < william-gehrkens.jpg)" -eq 23388
+          echo "85c0dc3f9df401ed76713fd7e346d4f2186bbbeb65719f1c1a599a6d372719b8  william-gehrkens.jpg" | sha256sum --check --strict
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
         with:
           enablement: true
+
       - name: Upload site
         uses: actions/upload-pages-artifact@v3
         with:
           path: .
+
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
