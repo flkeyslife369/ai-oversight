@@ -27,9 +27,11 @@ jobs:
       - name: Reconstruct verified portrait
         shell: bash
         run: |
-          cat portrait.chunk1a portrait.chunk1b portrait.chunk2 portrait.chunk3 portrait.chunk4 portrait.chunk5 portrait.chunk6 portrait.chunk7 portrait.chunk8 | base64 --decode > william-gehrkens.jpg
-          test "$(wc -c < william-gehrkens.jpg)" -eq 23388
-          echo "85c0dc3f9df401ed76713fd7e346d4f2186bbbeb65719f1c1a599a6d372719b8  william-gehrkens.jpg" | sha256sum --check --strict
+          cat portrait.chunk1a portrait.chunk1b portrait.chunk2 portrait.chunk3 portrait.chunk4 portrait.chunk5 portrait.chunk6 portrait.chunk7 portrait.chunk8 | base64 --decode > william-gehrkens-sharp.jpg
+          test "$(wc -c < william-gehrkens-sharp.jpg)" -eq 23388
+          echo "85c0dc3f9df401ed76713fd7e346d4f2186bbbeb65719f1c1a599a6d372719b8  william-gehrkens-sharp.jpg" | sha256sum --check --strict
+          sed -i 's/src="william-gehrkens.jpg"/src="william-gehrkens-sharp.jpg"/' index.html
+          grep -q 'src="william-gehrkens-sharp.jpg"' index.html
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
