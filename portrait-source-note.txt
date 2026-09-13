@@ -1,0 +1,1 @@
+Portrait refresh source: original user-supplied portrait, sharpened only for web display. No AI-generated portrait used for the live image.
