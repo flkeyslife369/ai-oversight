@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://flkeyslife369.github.io/ai-oversight/sitemap.xml
